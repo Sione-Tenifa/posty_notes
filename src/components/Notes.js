@@ -1,12 +1,22 @@
 import React from 'react';
 import { connect, } from 'react-redux';
+import NoteForm from './NoteForm'
 import { Link, } from 'react-router-dom';
 import { getNotes, } from '../reducers/notes';
-import { Container, Header, Card, Image, } from 'semantic-ui-react';
+import { Container, Header, Card, Image, Button, } from 'semantic-ui-react';
 
 class Notes extends React.Component {
+
+  state = { showForm: false,}
+
   componentDidMount() {
     this.props.dispatch(getNotes())
+  }
+
+  toggleForm = () => {
+    this.setState( state => {
+      return { showForm: !state.showForm, };
+    })
   }
 
   notes = () => {
@@ -32,12 +42,20 @@ class Notes extends React.Component {
   }
 
   render() {
+    const{ showForm, } = this.state; 
     return (
       <Container>
         <Header as="h3" textAlign="center">Notes</Header>
-          <Card.Group itemsPerRow={5}>
-           { this.notes() }
-          </Card.Group>
+          <Button onClick={this.toggleForm}>
+            { showForm ? 'Hide Form' : 'Show Form' }
+          </Button>
+          { showForm ?
+            <NoteForm closeForm={this.toggleForm}/>
+            :
+            <Card.Group itemsPerRow={5}>
+            { this.notes() }
+            </Card.Group>
+          }
         </Container>
       )
     }
