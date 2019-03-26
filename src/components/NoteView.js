@@ -4,6 +4,7 @@ import { Header, Image, Container, Table, Button, } from 'semantic-ui-react';
 import { Link, } from 'react-router-dom';
 import NoteForm from './NoteForm';
 import { deleteNote, } from "../reducers/notes";
+import styled from 'styled-components';
 
 
 class NoteView extends React.Component {
@@ -26,7 +27,7 @@ class NoteView extends React.Component {
     const { note = {}, } = this.props;
 
     return (
-      <Container>
+      <AppContainer>
         <Link to="/notes">View All Notes</Link>
         <Button onClick={this.toggleForm}>
           { showForm ? 'Cancel' : 'Edit' }
@@ -56,7 +57,7 @@ class NoteView extends React.Component {
               </Table>
             </div>
           }
-      </Container>
+      </AppContainer>
     )
   }
 }
@@ -64,5 +65,10 @@ class NoteView extends React.Component {
 const mapStateToProps = (state, props) => {
   return { note: state.notes.find( a => a.id === parseInt(props.match.params.id, )) };
 }
+
+const AppContainer = styled.div`
+  background: linear-gradient(to bottom right, aliceblue, black);
+`;
+
 
 export default connect(mapStateToProps)(NoteView);

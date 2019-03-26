@@ -2,6 +2,8 @@ import React from 'react';
 import { connect, } from 'react-redux'
 import { updateNote, addNote, } from '../reducers/notes'
 import { Form, } from 'semantic-ui-react';
+import styled from 'styled-components';
+
 
 class NoteForm extends React.Component {
   initialState = { 

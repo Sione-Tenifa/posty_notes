@@ -6,7 +6,7 @@ const Home = () => (
   <Header as="h3" textAlign="center">
     Welcome To The
     {" "}
-    <Link to="/notes">Note Store</Link>
+    <Link to="/notes">Click on to go to Notes</Link>
   </Header>
 );
 

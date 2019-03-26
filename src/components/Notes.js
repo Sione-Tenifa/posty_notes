@@ -4,6 +4,8 @@ import NoteForm from './NoteForm'
 import { Link, } from 'react-router-dom';
 import { getNotes, } from '../reducers/notes';
 import { Container, Header, Card, Image, Button, } from 'semantic-ui-react';
+import styled from 'styled-components';
+
 
 class Notes extends React.Component {
 
@@ -44,9 +46,9 @@ class Notes extends React.Component {
   render() {
     const{ showForm, } = this.state; 
     return (
-      <Container>
+      <AppContainer>
         <Header as="h3" textAlign="center">Notes</Header>
-          <Button onClick={this.toggleForm}>
+          <Button color='blue' onClick={this.toggleForm}>
             { showForm ? 'Hide Form' : 'Show Form' }
           </Button>
           { showForm ?
@@ -56,13 +58,19 @@ class Notes extends React.Component {
             { this.notes() }
             </Card.Group>
           }
-        </Container>
+        </AppContainer>
       )
     }
   }
 
   const mapStateToProps = (state) => {
     return { notes: state.notes, };
+
   }
+
+  const AppContainer = styled.div`
+  background: linear-gradient(to bottom right, aliceblue, blue);
+`;
+
 
 export default connect(mapStateToProps)(Notes);
